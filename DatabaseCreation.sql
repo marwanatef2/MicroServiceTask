@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Document` (
   CONSTRAINT `fk_Document_Type`
     FOREIGN KEY (`Type_id`)
     REFERENCES `mydb`.`Type` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Receipt` (
   CONSTRAINT `fk_Receipt_Document1`
     FOREIGN KEY (`Document_id`)
     REFERENCES `mydb`.`Document` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Draft` (
   CONSTRAINT `fk_Draft_Document1`
     FOREIGN KEY (`Document_Id`)
     REFERENCES `mydb`.`Document` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -112,13 +112,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Employee` (
   CONSTRAINT `fk_Employee_Department1`
     FOREIGN KEY (`Department_Id`)
     REFERENCES `mydb`.`Department` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Employee_User1`
     FOREIGN KEY (`User_Id`)
     REFERENCES `mydb`.`User` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -136,13 +136,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Copy` (
   CONSTRAINT `fk_Copy_Draft1`
     FOREIGN KEY (`Draft_Id` , `Draft_Document_Id`)
     REFERENCES `mydb`.`Draft` (`Id` , `Document_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Copy_Employee1`
     FOREIGN KEY (`Employeer_Id`)
     REFERENCES `mydb`.`Employee` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -156,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Customer` (
   CONSTRAINT `fk_Customer_User1`
     FOREIGN KEY (`User_Id`)
     REFERENCES `mydb`.`User` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -174,13 +174,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Document_Circulation` (
   CONSTRAINT `fk_Employee_has_Document_Employee1`
     FOREIGN KEY (`Employeer_Id`)
     REFERENCES `mydb`.`Employee` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Employee_has_Document_Document1`
     FOREIGN KEY (`Document_Id`)
     REFERENCES `mydb`.`Document` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -198,13 +198,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Document_Change` (
   CONSTRAINT `fk_User_has_Document_User1`
     FOREIGN KEY (`User_Id`)
     REFERENCES `mydb`.`User` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_User_has_Document_Document1`
     FOREIGN KEY (`Document_Id`)
     REFERENCES `mydb`.`Document` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -220,13 +220,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Request` (
   CONSTRAINT `fk_Customer_has_Document_Customer1`
     FOREIGN KEY (`Customer_User_Id`)
     REFERENCES `mydb`.`Customer` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Customer_has_Document_Document1`
     FOREIGN KEY (`Document_Id`)
     REFERENCES `mydb`.`Document` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
