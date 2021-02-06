@@ -1,5 +1,5 @@
 from flask import Flask, request
-from businesslogic import addCustomer, getCustomer
+from businesslogic import addCustomer, getAllCustomers, getCustomer
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,3 +15,7 @@ def add_customer():
 @app.route(base_url+'<int:id>', methods=['GET'])
 def get_customer(id):
     return getCustomer(id)
+
+@app.route(base_url, methods=['GET'])
+def get_all_customers():
+    return getAllCustomers()

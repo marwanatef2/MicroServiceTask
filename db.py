@@ -24,4 +24,11 @@ def fetchCustomerfromDB(id):
         sql = "SELECT email,firstName,lastName,phoneNo,address FROM customer INNER JOIN user ON customer.user_id = user.id WHERE user.id=%s"
         cursor.execute(sql, (id))
         customer = cursor.fetchone()
-        return customer
+    return customer
+
+def fetchAllCustomersfromDB():
+    with connection.cursor() as cursor:
+        sql = "SELECT user.id,email,firstName,lastName,phoneNo,address FROM customer INNER JOIN user ON customer.user_id = user.id"
+        cursor.execute(sql)
+        customers = cursor.fetchall()
+    return customers
