@@ -1,11 +1,11 @@
 from pymysql import NULL
 from flask import jsonify
-from db import addCustomertoDB, fetchAllCustomersfromDB, fetchCustomerfromDB
+from db import addCustomertoDB, deleteCustomerfromDB, fetchAllCustomersfromDB, fetchCustomerfromDB
 
 def addCustomer(customer):
     if 'email' not in customer:
         return {'success': False, 'msg': 'Email can not be empty'}
-    customerId = addCustomertoDB(customer)
+    customerId = addCustomertoDB(customer.get('email'), customer.get('firstName'), customer.get('lastName'), customer.get('phoneNo'), customer.get('address'))
     return {'success': True, 'msg': 'Customer added successfully', 'customerId': customerId}
 
 def getCustomer(id):
@@ -19,3 +19,7 @@ def getAllCustomers():
     if not customers:
         return {'success': False, 'msg': 'No customers found'}
     return jsonify({'success': True, 'customers': customers})
+
+def removeCustomer(id):
+    deleteCustomerfromDB(id)
+    return {'success': True, 'msg': "Customer deleted successfully"}

@@ -9,13 +9,13 @@ connection = pymysql.connect(
         cursorclass=pymysql.cursors.DictCursor
     )
 
-def addCustomertoDB(values):
+def addCustomertoDB(email, firstName, lastName, phoneNo, address):
     with connection.cursor() as cursor:
         sql = "INSERT INTO `user` (`email`, `firstName`, `lastName`, `phoneNo`) VALUES (%s,%s,%s,%s)"
-        cursor.execute(sql, (values.get('email'), values.get('firstName'), values.get('lastName'), values.get('phoneNo')))
+        cursor.execute(sql, (email, firstName, lastName, phoneNo))
         customerId = cursor.lastrowid
         sql = "INSERT INTO `customer` (`address`, `user_id`) VALUES (%s, %s)"
-        cursor.execute(sql, (values.get('address'), customerId))
+        cursor.execute(sql, (address, customerId))
     connection.commit()
     return customerId
 
@@ -32,3 +32,10 @@ def fetchAllCustomersfromDB():
         cursor.execute(sql)
         customers = cursor.fetchall()
     return customers
+
+def deleteCustomerfromDB(id):
+    with connection.cursor() as cursor:
+        sql = "DELETE FROM user WHERE id=%s"
+        cursor.execute(sql, (id))
+    connection.commit()
+

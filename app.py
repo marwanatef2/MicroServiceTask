@@ -1,5 +1,5 @@
 from flask import Flask, request
-from businesslogic import addCustomer, getAllCustomers, getCustomer
+from businesslogic import addCustomer, getAllCustomers, getCustomer, removeCustomer
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,3 +19,8 @@ def get_customer(id):
 @app.route(base_url, methods=['GET'])
 def get_all_customers():
     return getAllCustomers()
+
+@app.route(base_url+'remove', methods=['POST'])
+def delete_customer():
+    customerId = request.json['id']
+    return removeCustomer(customerId)
